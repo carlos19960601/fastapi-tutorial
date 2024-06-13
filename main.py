@@ -1,14 +1,10 @@
+import os
 
-from fastapi import FastAPI  # 1. 导入 FastAPI
-
-import routers.todo_router as todo_router
-
-app = FastAPI() # 2. 创建一个 FastAPI 实例
+import click
 
 
-@app.get('/') 
-async def welcome():
-    return { "message": "Welcome to my Page"}
+def main(env: str):
+    os.environ["ENV"] = env
 
-
-app.include_router(todo_router.router)
+if __name__ == "__main__":
+    main()

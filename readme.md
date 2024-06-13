@@ -1,44 +1,21 @@
-
-**创建虚拟环境**
-
-```
-python3 -m venv env/
-```
-
-**激活虚拟环境**
+`pipx`安装cli工具
 
 ```
-source env/bin/activate
+brew install pipx
 ```
 
-**退出虚拟环境**
-
 ```
-deactivate
+pipx install poetry
 ```
 
-**安装 FastAPI 和 uvicorn**
+**进入虚拟环境**
 
 ```
-pip install fastapi uvicorn
+poetry shell
 ```
 
-**运行服务器**
+添加依赖
 
 ```
-uvicorn main:app --port 8000 --reload 
+poetry add 依赖
 ```
-
-# 安装依赖
-
-```
-pip install -r requirements.txt
-```
-
-# 运行
-
-```
-python main.py
-```
-    
-`
