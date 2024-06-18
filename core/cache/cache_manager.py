@@ -3,8 +3,9 @@ from typing import Type
 
 from sqlalchemy import func
 
-from core.cache import CacheTag
 from core.cache.base import BaseBackend, BaseKeyMaker
+
+from .cache_tag import CacheTag
 
 
 class CacheManager:
@@ -28,4 +29,5 @@ class CacheManager:
                 )
 
 
+Cache = CacheManager()
 Cache = CacheManager()

@@ -4,7 +4,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from api import router
-from core.cache import Cache, CustomKeyMaker, RedisBackend
 from core.config import config
 from core.exceptions.base import CustomException
 from core.fastapi.dependencies import Logging
@@ -38,10 +37,6 @@ def init_listeners(app: FastAPI) -> None:
         )
 
 
-def init_cache() -> None:
-    Cache.init(backend=RedisBackend(), key_maker=CustomKeyMaker())
-
-
 def make_middleware() -> list[Middleware]:
     middleware = [
         Middleware(
@@ -68,8 +63,13 @@ def create_app() -> FastAPI:
     )
     init_routers(app)
     init_listeners(app)
-    init_cache()
+
     return app
 
 
+app = create_app()
+app = create_app()
+app = create_app()
+app = create_app()
+app = create_app()
 app = create_app()
