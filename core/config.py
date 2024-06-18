@@ -1,5 +1,6 @@
 import os
 
+from pydantic import RedisDsn
 from pydantic_settings import BaseSettings
 
 
@@ -11,6 +12,10 @@ class Config(BaseSettings):
     APP_PORT: int = 8000
     WRITER_DB_URL: str = "mysql+aiomysql://fastapi:fastapi@localhost:3306/fastapi"
     READER_DB_URL: str = "mysql+aiomysql://fastapi:fastapi@localhost:3306/fastapi"
+    SECRET_KEY: str = "super-secret-key"
+    JWT_ALGORITHM: str = "HS256"
+    JWT_EXPIRE_MINUTES: int = 60 * 24
+    REDIS_URL: RedisDsn = "redis://localhost:6379/0"
 
 
 class DevConfig(Config): ...

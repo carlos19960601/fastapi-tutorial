@@ -9,4 +9,6 @@ class PasswordHandler:
     def hash(password: str) -> str:
         return PasswordHandler.pwd_context.hash(password)
 
-    def verify(hass)
+    @staticmethod
+    def verify(hashed_password, plain_password):
+        return PasswordHandler.pwd_context.verify(plain_password, hashed_password)

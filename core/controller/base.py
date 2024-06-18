@@ -1,5 +1,6 @@
 from typing import Generic, Type, TypeVar
 
+from core.database import Propagation, Transactional
 from core.database.session import Base
 from core.exceptions import NotFoundException
 from core.repository import BaseRepository
@@ -16,7 +17,7 @@ class BaseController(Generic[ModelType]):
         return await self.repository.get_all(skip, limit)
 
     async def get_by_id(self, id_: int) -> ModelType:
-        db_obj = await self.repository.get_by(field="id", value=id_)
+        db_obj = await self.repository.get_by(field="id", value=id_, unique=True)
 
         if not db_obj:
             raise NotFoundException(
@@ -24,3 +25,8 @@ class BaseController(Generic[ModelType]):
             )
 
         return db_obj
+
+    @Transactional(propagation=Propagation.REQUIRED)
+    async def delete(self, model: ModelType) -> None:
+        delete = await self.repository.delete(model)
+        return delete
